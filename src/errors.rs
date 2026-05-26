@@ -1,4 +1,6 @@
-error_chain!{
+pub use error_chain::bail;
+
+error_chain::error_chain! {
     foreign_links {
         SerdeJson(serde_json::Error);
     }

@@ -1,13 +1,12 @@
 #[macro_use]
 extern crate jsonapi;
-#[macro_use]
-extern crate serde_derive;
 extern crate serde_json;
+use serde::{Serialize, Deserialize};
 use jsonapi::array::JsonApiArray;
 use jsonapi::model::*;
 
 mod helper;
-use helper::read_json_file;
+use crate::helper::read_json_file;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 struct Author {
@@ -109,7 +108,7 @@ fn test_vec_to_jsonapi_document() {
 
 #[test]
 fn from_jsonapi_document() {
-    let json = ::read_json_file("data/author_tolkien.json");
+    let json = read_json_file("data/author_tolkien.json");
 
     // TODO - is this the right thing that we want to test? Shold this cast into a JsonApiDocument
     // and detect if this was a data or an error?
